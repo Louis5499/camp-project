@@ -1,0 +1,120 @@
+
+$container-background: transparent;
+$white: #eae3e3;
+
+%subContainer {
+  width: 100%;
+  height: 30%;
+
+  background-color: $container-background;
+
+  border-radius: 10px;
+  border-style: inset;
+  border: 1px solid rgba(#65c0ba,0.3);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+
+  background-size: cover;
+}
+
+.mainWrapper {
+  background: #1a2c5b;
+
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+}
+.topWrapper {
+  width: 100%;
+  height: 35%;
+  display: flex;
+  flex-direction: row;
+}
+.moneyWrapper {
+  width: 50%;
+  height: 100%;
+
+  margin: 20px 10px 20px 20px;
+  box-sizing: border-box;
+
+  background: url('../assets/bitcoinBg.png');
+  background-size: cover;
+
+  border-radius: 10px;
+  border-style: inset;
+  border: 1px solid rgba(#65c0ba,0.3);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Roboto Condensed', sans-serif;
+  padding-top: 100px;
+}
+.cardWrapper {
+  width: 50%;
+  height: 100%;
+  margin: 20px 20px 20px 10px;
+  box-sizing: border-box;
+}
+.atkWrap {
+  @extend %subContainer;
+  background-image: url('../assets/atkBg.png');
+}
+
+.defWrap {
+  @extend %subContainer;
+  margin-top: 4%;
+  background-image: url('../assets/defBg.png');
+  background-position: 100% 69%;
+}
+.spWrap {
+  @extend %subContainer;
+  margin-top: 4%;
+  background-image: url('../assets/spBg.png');
+}
+.moneyTop {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+}
+.bitcoinTitle {
+  color: $white;
+  margin-left: 10px;
+}
+.bitcoinAmount {
+  font-size: 2em;
+  margin-top: 10px;
+  letter-spacing: .1em;
+  color: $white;
+}
+.cardNum {
+  color: $white;
+  font-size: 1.8em;
+
+  position: relative;
+  right: 20%;
+}
+
+.scoreBoard {
+  width: 100%;
+  height: 65%;
+
+  padding: 40px;
+
+  box-sizing: border-box;
+}
+.boardTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  color: $white;
+}
