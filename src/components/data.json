@@ -1,0 +1,109 @@
+
+{
+"teams" : [
+  {
+    "team": 1,
+    "money":500,
+    "atk": 0,
+    "def": 0,
+    "sp": 0,
+    "usedCardNum" : 0,
+    "atkTimes": 0,
+    "defTimes": 0,
+    "spTimes": 0,
+    "lastRank": 0,
+    "curRank": 0
+  },
+  {
+    "team": 2,
+    "money":200,
+    "atk": 0,
+    "def": 0,
+    "sp": 0,
+    "usedCardNum" : 0,
+    "atkTimes": 0,
+    "defTimes": 0,
+    "spTimes": 0,
+    "lastRank": 0,
+    "curRank": 0
+  },
+  {
+    "team": 3,
+    "money":400,
+    "atk": 0,
+    "def": 0,
+    "sp": 0,
+    "usedCardNum" : 0,
+    "atkTimes": 0,
+    "defTimes": 0,
+    "spTimes": 0,
+    "lastRank": 0,
+    "curRank": 0
+  },
+  {
+    "team": 4,
+    "money":600,
+    "atk": 0,
+    "def": 0,
+    "sp": 0,
+    "usedCardNum" : 0,
+    "atkTimes": 0,
+    "defTimes": 0,
+    "spTimes": 0,
+    "lastRank": 0,
+    "curRank": 0
+  },
+  {
+    "team": 5,
+    "money":700,
+    "atk": 0,
+    "def": 0,
+    "sp": 0,
+    "usedCardNum" : 0,
+    "atkTimes": 0,
+    "defTimes": 0,
+    "spTimes": 0,
+    "lastRank": 0,
+    "curRank": 0
+  },
+  {
+    "team": 6,
+    "money":200,
+    "atk": 0,
+    "def": 0,
+    "sp": 0,
+    "usedCardNum" : 0,
+    "atkTimes": 0,
+    "defTimes": 0,
+    "spTimes": 0,
+    "lastRank": 0,
+    "curRank": 0
+  },
+  {
+    "team": 7,
+    "money":300,
+    "atk": 0,
+    "def": 0,
+    "sp": 0,
+    "usedCardNum" : 0,
+    "atkTimes": 0,
+    "defTimes": 0,
+    "spTimes": 0,
+    "lastRank": 0,
+    "curRank": 0
+  },
+  {
+    "team": 8,
+    "money":1000,
+    "atk": 0,
+    "def": 0,
+    "sp": 0,
+    "usedCardNum" : 0,
+    "atkTimes": 0,
+    "defTimes": 0,
+    "spTimes": 0,
+    "lastRank": 0,
+    "curRank": 0
+  }
+]
+}

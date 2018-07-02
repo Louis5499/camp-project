@@ -17,6 +17,7 @@
   color: #2c3e50;
   height: 100vh;
   width: 100vw;
+  background: #2c3e50;
 }
 
 html, body, div, span, applet, object, iframe,

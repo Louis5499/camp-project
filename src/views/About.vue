@@ -1,5 +1,32 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <ScoreBoard></ScoreBoard>
   </div>
 </template>
+
+<script>
+import ScoreBoard from '@/components/ScoreBoard.vue';
+
+export default {
+  components: {
+    ScoreBoard
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  position: relative;
+
+  height: 100vh;
+  width: 100vw;
+
+  overflow: hidden;
+}
+</style>
+
+
