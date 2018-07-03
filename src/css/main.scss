@@ -110,6 +110,10 @@ $white: #eae3e3;
   padding: 40px;
 
   box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .boardTitle {
   display: flex;
@@ -117,4 +121,18 @@ $white: #eae3e3;
   align-items: center;
   justify-content: space-around;
   color: $white;
+
+  font-weight: 500;
+}
+.boardContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 6px;
+  height: 30px;
+  background: rgba(#79b8d1,0.3);
+}
+
+.boardContent div {
+  width: 33%;
 }

@@ -26,10 +26,10 @@
           <div class="titleTeam">組別</div>
           <div class="titleMoney">金錢</div>
         </div>
-        <div class="boardContent">
-          <div class="contentRank">排名</div>
-          <div class="contentTeam">組別</div>
-          <div class="contentMoney">金錢</div>
+        <div class="boardContent" v-for="(data,i) in teamsData" :key="i">
+          <div class="contentRank">{{data.curRank}}</div>
+          <div class="contentTeam">{{data.team}}</div>
+          <div class="contentMoney">{{data.money}}</div>
         </div>
       </div>
   </div>
@@ -37,8 +37,13 @@
 
 <script>
 import css from '../css/main.scss'
+import { mapState } from 'vuex'
 export default {
-  
+  computed: {
+    teamsData() {
+      return this.$store.state.teams;
+    }
+  }
 }
 </script>
 
