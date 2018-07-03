@@ -6,16 +6,20 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    teams: []
+    teams: [],
+    loginTeam: 0 // 1 ~ 8
   },
   mutations: {
-    renew(state,data) {
+    renewTeams(state,data) {
       state.teams = data.teams;
+    },
+    setLoginTeam(state,teamNum) {
+      state.loginTeam = teamNum;
     }
   },
   actions: {
     updateData ({ commit, state }, data) {
-      commit('renew',Data);
+      commit('renewTeams',Data);
     }
   }
 })

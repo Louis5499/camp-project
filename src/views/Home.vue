@@ -3,7 +3,7 @@
     <!-- <img src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <h1 class="title">請輸入你的組別</h1>
-    <el-select class="select" v-model="value" placeholder="Select" size="small">
+    <el-select class="select" v-model="value" placeholder="組別" size="small">
       <el-option
         v-for="item in options"
         :key="item.value"
@@ -11,8 +11,9 @@
         :value="item.value">
       </el-option>
     </el-select>
-    <el-input class="input" placeholder="請輸入代碼" v-model="input" size="small"></el-input>
-    <el-button type="primary" round class="finish">完成</el-button>
+    <el-input class="input" placeholder="請輸入代碼" v-model="passWd" size="small" @focus="errorHint = false"></el-input>
+    <el-button type="primary" round class="finish" @click="submit">完成</el-button>
+    <span v-if="errorHint" class="errorHint">代碼錯誤！</span>
   </div>
 </template>
 
@@ -52,7 +53,56 @@ export default {
           value: 'team8',
           label: '第八組'
         }],
-        value: ''
+      value: '',
+      passWd: '',
+      errorHint: false
+    }
+  },
+  methods:{
+    submit() {
+      let correct = false;
+      let teamNum = 0;
+      switch(this.value) {
+        case 'team1':
+          teamNum = 1;
+          if(this.passWd == 'IamTeam1') correct = true;
+          break;
+        case 'team2':
+          teamNum = 2;
+          if(this.passWd == 'IamTeam2') correct = true;
+          break;
+        case 'team3':
+          teamNum = 3;
+          if(this.passWd == 'IamTeam3') correct = true;
+          break;
+        case 'team4':
+          teamNum = 4;
+          if(this.passWd == 'IamTeam4') correct = true;
+          break;
+        case 'team5':
+          teamNum = 5;
+          if(this.passWd == 'IamTeam5') correct = true;
+          break;
+        case 'team6':
+          teamNum = 6;
+          if(this.passWd == 'IamTeam6') correct = true;
+          break;
+        case 'team7':
+          teamNum = 7;
+          if(this.passWd == 'IamTeam7') correct = true;
+          break;
+        case 'team8':
+          teamNum = 8;
+          if(this.passWd == 'IamTeam8') correct = true;
+          break;
+      }
+      if(correct) {
+        this.$store.commit('setLoginTeam',teamNum);
+        this.$router.push({name: 'main',query:{ teamId: teamNum }});
+      }
+      else {
+        this.errorHint = true;
+      }
     }
   }
 }
@@ -71,22 +121,26 @@ export default {
 .title {
   font-size: 1.5em;
   font-weight: 500;
-  position: relative;
-  top: 150px;
+  margin-top: 40%;
   color: white;
 }
 .select {
-  position: relative;
-  top: 180px;
-}
-.finish {
-  position: relative;
-  top: 250px;
+  margin-top: 10%;
 }
 .input {
-  position: relative;
-  top: 200px;
   width: 192px;
+  margin-top: 10%;
+}
+.finish {
+  margin-top: 10%;
+}
+.errorHint {
+  color: #fe5f55;
+  font-weight: 500;
+  margin-top: 5%;
+
+  position: relative;
+  left: 5px;
 }
 </style>
 
