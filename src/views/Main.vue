@@ -42,8 +42,6 @@
 
 <script>
 import css from '../css/main.scss'
-import { mapState } from 'vuex'
-import { mapGetters } from 'vuex'
 
 export default {
   data() {
@@ -57,7 +55,11 @@ export default {
   },
   computed: {
     teamsData() {
-      return this.$store.state.teams;
+      let arr = this.$store.state.teams;
+      arr.sort((a,b)=>{
+        return a.curRank-b.curRank
+      });
+      return arr;
     },
     loginTeam() {
       return this.$store.state.loginTeam;

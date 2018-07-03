@@ -1,6 +1,6 @@
 <template>
   <el-table
-    :data="teamData"
+    :data="teamsData"
     style="width: 80%; background: #2c3e50;"
     :header-cell-class-name="headerRowCalc"
     :row-class-name="tableRowClassName"
@@ -50,12 +50,15 @@
 </template>
 
 <script>
-import data from './data.json';
-
 export default {
   data() {
     return {
-      teamData: data.teams
+    }
+  },
+  computed: {
+    teamsData() {
+      let arr = this.$store.state.teams;
+      return arr;
     }
   },
   methods: {
