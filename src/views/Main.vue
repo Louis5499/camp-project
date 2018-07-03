@@ -2,7 +2,7 @@
   <div class="mainWrapper">
     <div class="topWrapper">
       <div class="bitcoin">
-        <span class="bitcoinTitle">500</span>
+        <span class="bitcoinTitle">{{teamMoney}}</span>
         <img class="bitcoin" src="../assets/bitcoin.png" width="15" height="15">
       </div>
       <div class="teamInfo">

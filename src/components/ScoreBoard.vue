@@ -1,106 +1,150 @@
 <template>
-  <el-table
-    :data="teamsData"
-    style="width: 80%; background: #2c3e50;"
-    :header-cell-class-name="headerRowCalc"
-    :row-class-name="tableRowClassName"
-    align="center"
-    :default-sort="{prop: 'money', order: 'descending'}"
-    >
-    <el-table-column
-      prop="curRank"
-      label="名次"
-      width="50">
-    </el-table-column>
-    <el-table-column
-      prop="team"
-      label="組別"
-      width="90">
-    </el-table-column>
-    <el-table-column
-      prop="money"
-      label="金錢"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      prop="usedCardNum"
-      label="卡牌使用次數"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      prop="atkTimes"
-      label="攻擊"
-      width="90">
-    </el-table-column>
-    <el-table-column
-      prop="defTimes"
-      label="防禦"
-      width="90">
-    </el-table-column>
-    <el-table-column
-      prop="spTimes"
-      label="加錢"
-      width="90">
-    </el-table-column>
-    <el-table-column
-      prop="lastRank"
-      label="上次名次">
-    </el-table-column>
-  </el-table>
+  <div class="boardWrapper">
+    <div class="titleBar">
+      <div v-for="(data,i) in labels" class="title" :key="i">{{data}}</div>
+    </div>
+    <transition-group name="list" tag="div" class="contentWrapper">
+      <div v-for="(data,i) in teamsData" :key="i" :class="teamDataCalc(data)" :style="topCalc(data,i)">
+        <div>{{data.curRank}}</div>
+        <div>{{data.team}}</div>
+        <div>{{data.money}}</div>
+        <div>{{data.usedCardNum}}</div>
+        <div>{{data.atkTimes}}</div>
+        <div>{{data.defTimes}}</div>
+        <div>{{data.spTimes}}</div>
+        <div>{{data.lastRank}}</div>
+      </div>
+    </transition-group>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
+      labels:['名次','組別','金錢','卡牌使用次數','攻擊','防禦','加錢','上次名次'],
+      types:['curRank','team','money','usedCardNum','atkTimes','defTimes','spTimes','lastRank'],
+      rankStack:[0,0,0,0,0,0,0,0]
     }
   },
   computed: {
     teamsData() {
       let arr = this.$store.state.teams;
       return arr;
-    }
+    },
   },
   methods: {
-    tableRowClassName({row, rowIndex}) {
-      if (rowIndex === 1) {
-        return 'row warning-row';
-      } else if (rowIndex === 3) {
-        return 'row success-row';
-      }
-      return 'row';
+    topCalc(data,index) {
+      let curRank = data.curRank;
+      console.log(this.rankStack);
+      if(this.rankStack[curRank-1] == 1) curRank++;
+      else this.rankStack[curRank-1] = 1;
+      if(index == 7) for(let i in this.rankStack) this.rankStack[i] = 0;
+      return {"top":(curRank-1)*50+"px"}
     },
-    headerRowCalc({row,rowIndex}) {
-      return 'headerRow';
+    teamDataCalc(data) {
+      if(data.curRank > data.lastRank) return 'teamData increase';
+      else if(data.curRank < data.lastRank) return 'teamData decrease';
+      return 'teamData';
     }
   },
 }
 </script>
 
 <style lang="scss">
-.el-table {
+$white: #eae3e3;
+$background:#1a2c5b;
+$increase: #4bbb8b;
+$decrease: #f85f73;
+
+@keyframes turnGreen {
+    0% {background: transparent}
+    30% {background: $decrease}
+    80% {background: $decrease}
+    100% {background: transparent}
+}
+
+@keyframes turnRed {
+    0% {background: transparent}
+    30% {background: $increase}
+    80% {background: $increase}
+    100% {background: transparent}
+}
+
+%smallDiv {
+  width: calc(100% / 8);
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.boardWrapper {
+  display: flex;
+  flex-direction: column;
+  color: $white;
+  font-weight: 500;
+
+  width: 80%;
+
+  margin-top: 10%;
+}
+
+.titleBar {
+  display: flex;
+  flex-direction: row;
+
+  height: 50px;
+  // border-bottom: 1px solid rgba($white,.2);
+
+  margin-bottom: 20px;
+}
+.titleBar div {
+  @extend %smallDiv;
+}
+.contentWrapper {
+  width: 100%;
+  height: calc(100% - 50px);
+
+  position: relative;
+
+  // display: flex;
+  // flex-direction: column;
+}
+.teamData {
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid rgba($white,.2);
+
   position: absolute;
-  top: 50%;
-  transform: translateY(-40%);
+  display: flex;
+  flex-direction: row;
+
+  transition: all ease 1s;
+
+  &.increase {
+    animation: turnRed 1s;
+  }
+
+  &.decrease {
+    animation: turnGreen 1s;
+  }
+
 }
-.el-table .row {
-  background-color: #2c3e50;
-  color: white;
+
+.teamData div {
+  @extend %smallDiv;
 }
-.el-table .headerRow {
-  background-color: #2c3e50;
-  color: white;
+
+
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
 }
-.el-table .warning-row {
-  background: #f85f73;
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
 }
-.el-table .success-row {
-  background: #4bbb8b;
-}
-.el-table__body tr.current-row>td {
-  background-color: #2c3e50;
-}
-.el-table--enable-row-hover .el-table__body tr:hover>td {
-  background-color: #2c3e50;
-}
+
 </style>
