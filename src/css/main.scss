@@ -1,28 +1,10 @@
 
 $container-background: transparent;
 $white: #eae3e3;
-
-%subContainer {
-  width: 100%;
-  height: 30%;
-
-  background-color: $container-background;
-
-  border-radius: 10px;
-  border-style: inset;
-  border: 1px solid rgba(#65c0ba,0.3);
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-
-  background-size: cover;
-}
-
+$background:#1a2c5b;
 .mainWrapper {
-  background: #1a2c5b;
-
+  background: url('../assets/bitcoinWrap.png');
+  background-size: cover;
   width: 100vw;
   height: 100vh;
 
@@ -34,97 +16,69 @@ $white: #eae3e3;
   width: 100%;
   height: 35%;
   display: flex;
-  flex-direction: row;
-}
-.leftPanel {
-  display: flex;
   flex-direction: column;
-  width: 50%;
-  height: 100%;
-  margin: 20px 10px 20px 20px;
-  box-sizing: border-box;
-}
-.TeamWrapper {
-  border-radius: 10px;
-  border: 1px solid rgba(#65c0ba,0.3);
-  height: 30%;
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.TeamWrapper span {
-  color: $white;
-  display: block;
-
-  font-weight: 500;
-  letter-spacing: 3px;
-  font-size: 1.2em;
-}
-.moneyWrapper {
-  width: 100%;
-  height: 66%;
-
-  margin-top: 4%;
-  background: url('../assets/bitcoinBg.png');
-  background-size: cover;
-
-  border-radius: 10px;
-  border: 1px solid rgba(#65c0ba,0.3);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: 'Roboto Condensed', sans-serif;
-  padding-top: 20%;
-  box-sizing: border-box;
-}
-.cardWrapper {
-  width: 50%;
-  height: 100%;
-  margin: 20px 20px 20px 10px;
-  box-sizing: border-box;
-}
-.atkWrap {
-  @extend %subContainer;
-  background-image: url('../assets/atkBg.png');
 }
 
-.defWrap {
-  @extend %subContainer;
-  margin-top: 4%;
-  background-image: url('../assets/defBg.png');
-  background-position: 100% 69%;
-}
-.spWrap {
-  @extend %subContainer;
-  margin-top: 4%;
-  background-image: url('../assets/spBg.png');
-}
-.moneyTop {
-  margin-top: 10px;
+.bitcoin {
   display: flex;
   flex-direction: row;
-
   align-items: center;
-}
-.bitcoinTitle {
   color: $white;
-  margin-left: 10px;
-}
-.bitcoinAmount {
-  font-size: 2em;
-  margin-top: 10px;
-  letter-spacing: .1em;
-  color: $white;
-}
-.cardNum {
-  color: $white;
-  font-size: 1.8em;
-
   position: relative;
-  right: 20%;
+
+  justify-content: flex-end;
+  font-size: 4em;
+
+  margin-top: 70px;
+}
+
+.bitcoin img {
+  margin: 0 50px 0 0;
+  position: relative;
+  top:10px;
+}
+
+.bitcoin span {
+  display: block;
+  margin-right: 10px;
+}
+
+.teamInfo {
+  display: flex;
+  color: $white;
+  font-weight: 500;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.teamInfo span {
+  display: block;
+  margin-right: 84px;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  justify-content: center;
+
+  margin-top: 50px;
+}
+
+.cardInfo div {
+  margin: 0 20px 0 20px;
+}
+.cardInfo div img {
+  margin-right: 10px;
+}
+.cardInfo span {
+  color: $white;
+  font-weight: 500;
+  font-size: 1.5em;
+}
+.atkWrapper {
+  
 }
 
 .scoreBoard {

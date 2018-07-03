@@ -39,5 +39,6 @@ var vm = this;
 // Listen for Value
 database.ref(`teams`).on('value',(snapShot)=>{
   let datum = snapShot.val();
+  console.log(datum);
   store.dispatch('updateData',datum);
 })

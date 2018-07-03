@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Data from './components/data.json'
 
 Vue.use(Vuex)
 
@@ -11,7 +10,7 @@ export default new Vuex.Store({
   },
   mutations: {
     renewTeams(state,data) {
-      state.teams = data.teams;
+      state.teams = data;
     },
     setLoginTeam(state,teamNum) {
       state.loginTeam = teamNum;
@@ -19,7 +18,7 @@ export default new Vuex.Store({
   },
   actions: {
     updateData ({ commit, state }, data) {
-      commit('renewTeams',Data);
+      commit('renewTeams',data);
     }
   }
 })

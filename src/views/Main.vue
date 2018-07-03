@@ -1,27 +1,25 @@
 <template>
   <div class="mainWrapper">
     <div class="topWrapper">
-      <div class="leftPanel">
-        <div class="TeamWrapper">
-          <span>{{teamString}}</span>
-        </div>
-        <div class="moneyWrapper">
-          <div class="moneyTop">
-            <img class="bitcoin" src="../assets/bitcoin.png" width="20" height="20">
-            <span class="bitcoinTitle">Bitcoin</span>
-          </div>
-          <span class="bitcoinAmount">{{teamMoney}}</span>
-        </div>
+      <div class="bitcoin">
+        <span class="bitcoinTitle">500</span>
+        <img class="bitcoin" src="../assets/bitcoin.png" width="15" height="15">
       </div>
-      <div class="cardWrapper">
-        <div class="atkWrap">
-          <span class="cardNum">{{teamAtk}}</span>
+      <div class="teamInfo">
+        <span>{{teamString}}</span>
+      </div>
+      <div class="cardInfo">
+        <div class="atkWrapper">
+          <img src="../assets/atk.png" width="15" height="15">
+          <span>{{teamAtk}}</span>
         </div>
-        <div class="defWrap">
-          <span class="cardNum">{{teamDef}}</span>
+        <div class="defWrapper">
+          <img src="../assets/def.png" width="15" height="15">
+          <span>{{teamDef}}</span>
         </div>
-        <div class="spWrap">
-          <span class="cardNum">{{teamSp}}</span>
+        <div class="spWrapper">
+          <img src="../assets/sp.png" width="15" height="15">
+          <span>{{teamSp}}</span>
         </div>
       </div>
     </div>
