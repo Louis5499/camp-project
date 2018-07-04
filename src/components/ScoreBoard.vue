@@ -36,7 +36,6 @@ export default {
   methods: {
     topCalc(data,index) {
       let curRank = data.curRank;
-      console.log(this.rankStack);
       if(this.rankStack[curRank-1] == 1) curRank++;
       else this.rankStack[curRank-1] = 1;
       if(index == 7) for(let i in this.rankStack) this.rankStack[i] = 0;

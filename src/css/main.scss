@@ -118,3 +118,9 @@ $background:#1a2c5b;
 .boardContent div {
   width: 33%;
 }
+
+@media all and (max-height: 580px) {
+  .teamInfo {
+    margin-top: 10px;
+  }
+}
