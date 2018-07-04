@@ -23,23 +23,60 @@
         </div>
       </div>
     </div>
-    <div class="scoreBoard">
-        <div class="boardTitle">
-          <div class="titleRank">排名</div>
-          <div class="titleTeam">組別</div>
-          <div class="titleMoney">金錢</div>
-        </div>
-        <div :class="boardContentCalc(data)" v-for="(data,i) in teamsData" :key="i" >
-          <div class="contentRank">{{data.curRank}}</div>
-          <div class="contentTeam">{{data.team}}</div>
-          <div class="contentMoney">{{data.money}}</div>
-        </div>
+    <div v-if="!isBattling" class="scoreBoard">
+      <div class="boardTitle">
+        <div class="titleRank">排名</div>
+        <div class="titleTeam">組別</div>
+        <div class="titleMoney">金錢</div>
       </div>
+      <div :class="boardContentCalc(data)" v-for="(data,i) in teamsData" :key="i" >
+        <div class="contentRank">{{data.curRank}}</div>
+        <div class="contentTeam">{{data.team}}</div>
+        <div class="contentMoney">{{data.money}}</div>
+      </div>
+    </div>
+    <div v-if="isBattling" class="infoBar">
+        <span>目前名次</span>
+        <span class="infoRank">#{{teamRank}}</span>
+    </div>
+    <div v-if="isBattling && !isSubmit" class="battleWrapper" v-loading="loading">
+      <div class="attackBar underBar">
+        <img src="../assets/atk.png" width="15" height="15">
+        <span>攻擊</span>
+        <el-select class="select" v-model="value" placeholder="組別" size="small">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <div @click="submit(0)" class="submit">送出</div>
+      </div>
+      <div class="selfPointBar underBar">
+        <img src="../assets/sp.png" width="15" height="15">
+        <span>加值</span>
+        <div @click="submit(1)" class="submit">送出</div>
+      </div>
+      <div class="NaBar underBar">
+        <span style="width: 4em; margin-left: 25px;">放棄動作</span>
+        <div @click="submit(2)" class="submit">送出</div>
+      </div>
+      <div class="announcement underBar">
+        <span>{{announcement}}</span>
+      </div>
+    </div>
+    <div v-if="isBattling && isSubmit" class="battleWrapper isSubmit">
+      <span style="color: #f5c16c;">攻擊</span>
+      <span>第二組</span>
+      <div @click="isSubmit = false" class="reChoose">重選</div>
+    </div>
   </div>
 </template>
 
 <script>
 import css from '../css/main.scss'
+import firebase from 'firebase'
 
 export default {
   data() {
@@ -48,7 +85,39 @@ export default {
       teamMoney: 0,
       teamAtk: 0,
       teamDef: 0,
-      teamSp: 0
+      teamSp: 0,
+      teamRank: 0,
+      isBattling: true,
+      isSubmit: false,
+      announcement: '',
+      // Embeded Data
+      options: [{
+          value: '1',
+          label: '第一組'
+        }, {
+          value: '2',
+          label: '第二組'
+        }, {
+          value: '3',
+          label: '第三組'
+        }, {
+          value: '4',
+          label: '第四組'
+        }, {
+          value: '5',
+          label: '第五組'
+        }, {
+          value: '6',
+          label: '第六組'
+        }, {
+          value: '7',
+          label: '第七組'
+        }, {
+          value: '8',
+          label: '第八組'
+        }],
+      value: '',
+      loading: false
     }
   },
   computed: {
@@ -70,32 +139,8 @@ export default {
     },
     teamStringCalc() {
       let teamId = this.loginTeam;
-      switch(teamId) {
-        case 1:
-          this.teamString =  '第一組';
-          break;
-        case 2:
-          this.teamString =  '第二組';
-          break;
-        case 3:
-          this.teamString =  '第三組';
-          break;
-        case 4:
-          this.teamString =  '第四組';
-          break;
-        case 5:
-          this.teamString =  '第五組';
-          break;
-        case 6:
-          this.teamString =  '第六組';
-          break;
-        case 7:
-          this.teamString =  '第七組';
-          break;
-        case 8:
-          this.teamString =  '第八組';
-          break;
-      }
+      let translate = ['第一組','第二組','第三組','第四組','第五組','第六組','第七組','第八組'];
+      this.teamString = translate[teamId-1];
     },
     fetchData() {
       for(let data of this.$store.state.teams) {
@@ -104,8 +149,50 @@ export default {
           this.teamAtk = data.atk;
           this.teamDef = data.def;
           this.teamSp = data.sp;
+          this.teamRank = data.curRank;
         }
       }
+    },
+    submit(type) {
+      // 0 -> Atk 1 -> Sp 2 -> NA
+      // Empty
+      this.announcement = ''; 
+      // Collect var
+      let target = Number(this.value);
+      if(this.loading) return;
+      if(!target && type === 0) {
+        this.announcement = '請選擇組別';
+        return;
+      }
+      if(this.teamAtk <= 0 && type === 0) {
+        this.announcement = '沒有足夠攻擊卡';
+        return;
+      }
+      if(this.teamSp <= 0 && type === 1) {
+        this.announcement = '沒有足夠加值卡';
+        return;
+      }
+
+
+      let teamNum = this.loginTeam;
+      let eventTypes = ['Atk','Sp','NA'];
+      let event = eventTypes[type];
+      let req = {
+        kindofCard: event,
+        target: (type===0?target:0),
+        team: teamNum
+      };
+      var vm = this;
+
+      // Set data
+      let setFunc = async () => {
+        vm.loading = true;
+        await firebase.database().ref(`changes/${teamNum-1}`).set(req);
+        vm.loading = false;
+        vm.isSubmit = true;
+      }
+      setFunc();
+
     }
   },
   mounted() {

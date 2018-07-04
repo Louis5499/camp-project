@@ -10,6 +10,7 @@ $background:#1a2c5b;
 
   display: flex;
   flex-direction: column;
+  align-items: center;
 
 }
 .topWrapper {
@@ -77,9 +78,6 @@ $background:#1a2c5b;
   font-weight: 500;
   font-size: 1.5em;
 }
-.atkWrapper {
-  
-}
 
 .scoreBoard {
   width: 100%;
@@ -117,6 +115,135 @@ $background:#1a2c5b;
 
 .boardContent div {
   width: 33%;
+}
+
+.battleWrapper {
+  width: 100%;
+  height: 55%;
+  box-sizing: border-box;
+
+  padding-top: 40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.underBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  width: 85%;
+
+  height: 60px;
+
+  position: relative;
+}
+
+.underBar span {
+  color:$white;
+  font-weight: 500;
+  width: 3em;
+  font-size: 1.2em;
+}
+
+.underBar .select {
+  width: 100px;
+
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: calc(2% + 70px);
+}
+
+.submit {
+  border-radius: 10px;
+  height: 30px;
+  width: 50px;
+  border: $white 1px solid;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $white;
+  font-weight: 500;
+
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 2%;
+  
+}
+
+.infoBar {
+  border-bottom: 1px rgba($white,.4) solid;
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+
+  justify-content: space-around;
+
+  width: 80%;
+  height: 20%;
+
+  position: relative;
+
+  padding-bottom: 20px;
+  box-sizing: border-box;
+
+}
+
+.infoBar span {
+  width: 4em;
+  margin-left: 23px;
+
+  font-size: 1.2em;
+  font-weight: 500;
+  color: $white;
+}
+
+.infoRank {
+  font-size: 1.4em;
+  color: #f5c16c !important;
+}
+.announcement{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  & span {
+    color: #f5c16c;
+    width: 100% !important;
+    letter-spacing: 3px;
+  }
+}
+  
+.isSubmit span {
+  color:$white;
+  font-weight: 500;
+  width: 6em;
+  font-size: 1.2em;
+
+  margin-top: 30px;
+
+  letter-spacing: .2em;
+}
+
+.isSubmit .reChoose {
+  border-radius: 10px;
+  height: 30px;
+  width: 100px;
+  border: $white 1px solid;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $white;
+  font-weight: 500;
+
+  margin-top: 30px;
 }
 
 @media all and (max-height: 580px) {
