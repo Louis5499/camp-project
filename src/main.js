@@ -42,3 +42,18 @@ database.ref(`teams`).on('value',(snapShot)=>{
   console.log(datum);
   store.dispatch('updateData',datum);
 })
+
+database.ref(`changes`).on('value',(snapShot)=>{
+  let datum = snapShot.val();
+  store.dispatch('updateChanges',datum);
+})
+
+database.ref(`isProcess`).on('value',(snapShot)=>{
+  let datum = snapShot.val();
+  store.commit('renewProcess',datum);
+})
+
+database.ref(`isBattling`).on('value',(snapShot)=>{
+  let datum = snapShot.val();
+  store.commit('renewBattling',datum);
+})

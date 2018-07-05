@@ -59,7 +59,7 @@
         <div @click="submit(1)" class="submit">送出</div>
       </div>
       <div class="NaBar underBar">
-        <span style="width: 4em; margin-left: 25px;">放棄動作</span>
+        <span style="width: 4em; margin-left: 25px;">跳過回合</span>
         <div @click="submit(2)" class="submit">送出</div>
       </div>
       <div class="announcement underBar">
@@ -67,8 +67,8 @@
       </div>
     </div>
     <div v-if="isBattling && isSubmit" class="battleWrapper isSubmit">
-      <span style="color: #f5c16c;">攻擊</span>
-      <span>第二組</span>
+      <span style="color: #f5c16c;">{{this.eventTranslate}}</span>
+      <span>{{this.targetTranslate}}</span>
       <div @click="isSubmit = false" class="reChoose">重選</div>
     </div>
   </div>
@@ -76,6 +76,7 @@
 
 <script>
 import css from '../css/main.scss'
+import {mapState} from 'vuex'
 import firebase from 'firebase'
 
 export default {
@@ -117,6 +118,9 @@ export default {
           label: '第八組'
         }],
       value: '',
+      eventTypesCH: ['攻擊','加值','跳過此回合'],
+      eventTypes: ['Atk','Sp','NA'],
+      teamCH: ['第一組','第二組','第三組','第四組','第五組','第六組','第七組','第八組'],
       loading: false
     }
   },
@@ -130,6 +134,22 @@ export default {
     },
     loginTeam() {
       return this.$store.state.loginTeam;
+    },
+    ...mapState([
+      'changes'
+    ]),
+    eventTranslate() {
+      
+      let teamNum = this.loginTeam;
+      let datum = this.changes[teamNum-1];
+      console.log(datum);
+      for(let i=0;i<this.eventTypes.length;i++) if(this.eventTypes[i] === datum.kindofCard) return this.eventTypesCH[i];
+    },
+    targetTranslate() {
+      let teamNum = this.loginTeam;
+      let datum = this.changes[teamNum-1];
+      if(datum.kindofCard != 'Atk') return;
+      return this.teamCH[datum.target-1];
     }
   },
   methods: {
@@ -139,8 +159,7 @@ export default {
     },
     teamStringCalc() {
       let teamId = this.loginTeam;
-      let translate = ['第一組','第二組','第三組','第四組','第五組','第六組','第七組','第八組'];
-      this.teamString = translate[teamId-1];
+      this.teamString = this.teamCH[teamId-1];
     },
     fetchData() {
       for(let data of this.$store.state.teams) {
@@ -175,7 +194,7 @@ export default {
 
 
       let teamNum = this.loginTeam;
-      let eventTypes = ['Atk','Sp','NA'];
+      let eventTypes = this.eventTypes;
       let event = eventTypes[type];
       let req = {
         kindofCard: event,
