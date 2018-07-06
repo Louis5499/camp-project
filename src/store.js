@@ -4,12 +4,19 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  getters: {
+    getTeams: state => state.teams,
+    getAnnouncement: state => state.announcement
+  },
   state: {
     teams: [],
     loginTeam: 0, // 1 ~ 8
     changes: [],
     isProcess: false,
-    isBattling: false
+    isBattling: false,
+    announcement: '',
+    eventTrigger: false,
+    eventType: ''
   },
   mutations: {
     renewTeams(state,data) {
@@ -26,6 +33,14 @@ export default new Vuex.Store({
     },
     renewBattling(state,data) {
       state.isBattling = data;
+    },
+    renewAnnounce(state,data) {
+      state.announcement = data.message;
+      state.eventType = data.type;
+      state.eventTrigger = true;
+    },
+    eventFlagDown(state) {
+      state.eventTrigger = false;
     }
   },
   actions: {

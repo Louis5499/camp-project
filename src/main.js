@@ -57,3 +57,8 @@ database.ref(`isBattling`).on('value',(snapShot)=>{
   let datum = snapShot.val();
   store.commit('renewBattling',datum);
 })
+
+database.ref(`announcement`).on('value',(snapShot)=>{
+  let datum = snapShot.val();
+  store.commit('renewAnnounce',datum);
+})

@@ -4,8 +4,8 @@
       <div v-for="(data,i) in labels" class="title" :key="i">{{data}}</div>
     </div>
     <transition-group name="list" tag="div" class="contentWrapper">
-      <div v-for="(data,i) in teamsData" :key="i" :class="teamDataCalc(data)" :style="topCalc(data,i)">
-        <div>{{data.curRank}}</div>
+      <div v-for="(data,i) in teamsDisplayData" :key="i" :class="teamDataCalc(data)" :style="topCalc(data,i)">
+        <div>{{`#${data.curRank}`}}</div>
         <div>{{data.team}}</div>
         <div>{{data.money}}</div>
         <div>{{data.usedCardNum}}</div>
@@ -15,23 +15,28 @@
         <div>{{data.lastRank}}</div>
       </div>
     </transition-group>
+    <div v-if="isChangedTeam" class="changeSuccess"></div>
   </div>
 </template>
 
 <script>
+import { setTimeout } from 'timers'
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
       labels:['名次','組別','金錢','卡牌使用次數','攻擊','防禦','加錢','上次名次'],
       types:['curRank','team','money','usedCardNum','atkTimes','defTimes','spTimes','lastRank'],
-      rankStack:[0,0,0,0,0,0,0,0]
+      rankStack:[0,0,0,0,0,0,0,0],
+      teamsQueue: [],
+      teamsDisplayData: [],
+      isChangedTeam: false
     }
   },
   computed: {
-    teamsData() {
-      let arr = this.$store.state.teams;
-      return arr;
-    },
+    ...mapGetters({
+      getTeams: 'getTeams'
+    })
   },
   methods: {
     topCalc(data,index) {
@@ -47,6 +52,17 @@ export default {
       return 'teamData';
     }
   },
+  watch: {
+    getTeams() {
+      this.isChangedTeam = false;
+      this.teamsQueue = this.getTeams;
+      console.log(this.teamsQueue);
+      setTimeout(()=>{
+        this.teamsDisplayData = this.teamsQueue
+        setTimeout(()=>{this.isChangedTeam = true;},1000);
+      },3000);
+    }
+  }
 }
 </script>
 
@@ -70,6 +86,12 @@ $decrease: #f85f73;
     100% {background: transparent}
 }
 
+@keyframes fadeOut {
+  0% {border: 2px solid transparent;}
+  50% {border: 2px solid #17bebb;}
+  100% {border: 2px solid transparent;}
+}
+
 %smallDiv {
   width: calc(100% / 8);
   box-sizing: border-box;
@@ -89,6 +111,8 @@ $decrease: #f85f73;
   width: 80%;
 
   margin-top: 10%;
+
+  position: relative;
 }
 
 .titleBar {
@@ -131,6 +155,17 @@ $decrease: #f85f73;
     animation: turnGreen 1s;
   }
 
+}
+
+.changeSuccess {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 500px;
+
+  transform: scale(1.1);
+
+  animation: fadeOut 1s ease;
 }
 
 .teamData div {
