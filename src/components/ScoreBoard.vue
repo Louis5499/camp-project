@@ -25,7 +25,7 @@ import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      labels:['名次','組別','金錢','卡牌使用次數','攻擊','防禦','加錢','上次名次'],
+      labels:['名次','組別','金錢','卡牌使用次數','攻擊','防禦','加松果','上次名次'],
       types:['curRank','team','money','usedCardNum','atkTimes','defTimes','spTimes','lastRank'],
       rankStack:[0,0,0,0,0,0,0,0],
       teamsQueue: [],

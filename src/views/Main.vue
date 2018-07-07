@@ -51,16 +51,16 @@
             :value="item.value">
           </el-option>
         </el-select>
-        <div @click="submit(0)" class="submit">送出</div>
+        <div @click="submit(0)" :class="submitClassCalc">送出</div>
       </div>
       <div class="selfPointBar underBar">
         <img src="../assets/sp.png" width="15" height="15">
         <span>加值</span>
-        <div @click="submit(1)" class="submit">送出</div>
+        <div @click="submit(1)" :class="submitClassCalc">送出</div>
       </div>
       <div class="NaBar underBar">
         <span style="width: 4em; margin-left: 25px;">跳過回合</span>
-        <div @click="submit(2)" class="submit">送出</div>
+        <div @click="submit(2)" :class="submitClassCalc">送出</div>
       </div>
       <div class="announcement underBar">
         <span>{{announcement}}</span>
@@ -69,14 +69,15 @@
     <div v-if="isBattling && isSubmit" class="battleWrapper isSubmit">
       <span style="color: #f5c16c;">{{this.eventTranslate}}</span>
       <span>{{this.targetTranslate}}</span>
-      <div @click="isSubmit = false" class="reChoose">重選</div>
+      <div @click="reChoose()" :class="isProcess?'reChoose buttonDisable':'reChoose'">重選</div>
     </div>
   </div>
 </template>
 
 <script>
 import css from '../css/main.scss'
-import {mapState} from 'vuex'
+import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import firebase from 'firebase'
 
 export default {
@@ -88,7 +89,7 @@ export default {
       teamDef: 0,
       teamSp: 0,
       teamRank: 0,
-      isBattling: true,
+      // isBattling: true,
       isSubmit: false,
       announcement: '',
       // Embeded Data
@@ -150,6 +151,14 @@ export default {
       let datum = this.changes[teamNum-1];
       if(datum.kindofCard != 'Atk') return;
       return this.teamCH[datum.target-1];
+    },
+    ...mapGetters({
+      isBattling: 'getIsBattling',
+      isProcess: 'getIsProcess'
+    }),
+    submitClassCalc() {
+      if(this.isProcess) return 'submit buttonDisable'
+      else return 'submit'
     }
   },
   methods: {
@@ -178,7 +187,7 @@ export default {
       this.announcement = ''; 
       // Collect var
       let target = Number(this.value);
-      if(this.loading) return;
+      if(this.loading || this.isProcess) return;
       if(!target && type === 0) {
         this.announcement = '請選擇組別';
         return;
@@ -211,6 +220,11 @@ export default {
         vm.isSubmit = true;
       }
       setFunc();
+
+    },
+    reChoose() {
+      if(this.isProcess) return;
+      else this.isSubmit = false;
 
     }
   },

@@ -6,7 +6,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   getters: {
     getTeams: state => state.teams,
-    getAnnouncement: state => state.announcement
+    getAnnouncement: state => state.announcement,
+    getIsBattling: state => state.isBattling,
+    getIsProcess: state => state.isProcess
   },
   state: {
     teams: [],
