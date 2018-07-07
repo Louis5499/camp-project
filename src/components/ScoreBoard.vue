@@ -25,7 +25,7 @@ import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      labels:['名次','組別','金錢','卡牌使用次數','攻擊','防禦','加松果','上次名次'],
+      labels:['名次','組別','松果','卡牌使用次數','攻擊','防禦','加松果','上次名次'],
       types:['curRank','team','money','usedCardNum','atkTimes','defTimes','spTimes','lastRank'],
       rankStack:[0,0,0,0,0,0,0,0],
       teamsQueue: [],
@@ -56,7 +56,7 @@ export default {
     getTeams() {
       this.isChangedTeam = false;
       this.teamsQueue = this.getTeams;
-      console.log(this.teamsQueue);
+      console.log("inGetTeams"+this.teamsQueue);
       setTimeout(()=>{
         this.teamsDisplayData = this.teamsQueue
         setTimeout(()=>{this.isChangedTeam = true;},1000);

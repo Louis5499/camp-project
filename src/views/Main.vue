@@ -207,7 +207,7 @@ export default {
       let event = eventTypes[type];
       let req = {
         kindofCard: event,
-        target: (type===0?target:0),
+        target: (type===0?target:-1),
         team: teamNum
       };
       var vm = this;

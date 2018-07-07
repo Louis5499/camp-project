@@ -65,19 +65,19 @@ export default {
       switch(this.value) {
         case 'team1':
           teamNum = 1;
-          if(this.passWd == 'IamTeam1') correct = true;
+          if(this.passWd == 'qweasd') correct = true;
           break;
         case 'team2':
           teamNum = 2;
-          if(this.passWd == 'IamTeam2') correct = true;
+          if(this.passWd == 'uiojkl') correct = true;
           break;
         case 'team3':
           teamNum = 3;
-          if(this.passWd == 'IamTeam3') correct = true;
+          if(this.passWd == 'bnmghj') correct = true;
           break;
         case 'team4':
           teamNum = 4;
-          if(this.passWd == 'IamTeam4') correct = true;
+          if(this.passWd == 'rtyvbn') correct = true;
           break;
         case 'team5':
           teamNum = 5;
