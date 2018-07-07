@@ -236,6 +236,11 @@ export default {
   watch: {
     teamsData() {
       this.fetchData();
+    },
+    isProcess() {
+      if(this.isProcess == false) {
+        this.isSubmit = false; 
+      }
     }
   }
 }
