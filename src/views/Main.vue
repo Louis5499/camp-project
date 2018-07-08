@@ -3,7 +3,7 @@
     <div class="topWrapper">
       <div class="bitcoin">
         <span class="bitcoinTitle">{{teamMoney}}</span>
-        <img class="bitcoin" src="../assets/pinecone.png" width="15" height="15">
+        <img class="bitcoin" src="../assets/pinecone.png" width="12" height="16">
       </div>
       <div class="teamInfo">
         <span>{{teamString}}</span>
