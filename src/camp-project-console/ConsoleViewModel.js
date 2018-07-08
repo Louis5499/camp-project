@@ -40,10 +40,10 @@ function Log(msg) {
  * Check if inputs are valid.
  */
 function Check() {
-  /*if (consoleViewModel.TeamA.team() == consoleViewModel.TeamB.team()) {
+  if (consoleViewModel.TeamA.team()[0] == consoleViewModel.TeamB.team()[0]) {
     alert("Team A is Team B");
     return false;
-  }*/
+  }
   // TODO: Add more checks.
   return true;
 }
@@ -52,7 +52,22 @@ function Submit() {
   if (Check()) {
     // Update database.
     Log("Trying to Submit");
-    UpdateFirebase(consoleViewModel.TeamA, consoleViewModel.TeamB, () => { Log("Submit Successfully"); }, () => { Log("Submit Failed!!!"); }, 10000);
+    UpdateFirebase(consoleViewModel.TeamA, consoleViewModel.TeamB, () => { 
+      Log("Submit Successfully");
+      // Reset Team data.
+      // Bug: Knockout bug not updating selected option.
+      //consoleViewModel.TeamA.team(1);
+      consoleViewModel.TeamA.money(0);
+      consoleViewModel.TeamA.atk(0);
+      consoleViewModel.TeamA.def(0);
+      consoleViewModel.TeamA.sp(0);
+      // Reset Team data.
+      //consoleViewModel.TeamB.team(1);
+      consoleViewModel.TeamB.money(0);
+      consoleViewModel.TeamB.atk(0);
+      consoleViewModel.TeamB.def(0);
+      consoleViewModel.TeamB.sp(0);
+    }, () => { Log("Submit Failed!!!"); }, 10000);
   }
 }
 
