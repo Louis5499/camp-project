@@ -41,14 +41,14 @@ export default {
   methods: {
     topCalc(data,index) {
       let curRank = data.curRank;
+      let offset = curRank-1;
       if(this.rankStack[curRank-1] >= 1) {
-        curRank = curRank + this.rankStack[curRank-1];
+        offset += this.rankStack[curRank-1];
         this.rankStack[curRank-1]++;
-        console.log(curRank,this.rankStack[curRank-1]);
       }
       else this.rankStack[curRank-1] = 1;
       if(index == 7) for(let i in this.rankStack) this.rankStack[i] = 0;
-      return {"top":(curRank-1)*70+"px"}
+      return {"top":(offset)*70+"px"}
     },
     teamDataCalc(data) {
       if(data.curRank > data.lastRank) return 'teamData increase';
@@ -60,7 +60,6 @@ export default {
     getTeams() {
       this.isChangedTeam = false;
       this.teamsQueue = this.getTeams;
-      console.log("inGetTeams"+this.teamsQueue);
       setTimeout(()=>{
         this.teamsDisplayData = this.teamsQueue
         setTimeout(()=>{this.isChangedTeam = true;},1000);
@@ -167,7 +166,7 @@ $decrease: #f85f73;
   position: absolute;
   left: 0;
   width: 100%;
-  height: 600px;
+  height: 650px;
 
   transform: scale(1.1);
 
