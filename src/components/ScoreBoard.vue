@@ -48,7 +48,7 @@ export default {
       }
       else this.rankStack[curRank-1] = 1;
       if(index == 7) for(let i in this.rankStack) this.rankStack[i] = 0;
-      return {"top":(curRank-1)*50+"px"}
+      return {"top":(curRank-1)*70+"px"}
     },
     teamDataCalc(data) {
       if(data.curRank > data.lastRank) return 'teamData increase';
@@ -100,6 +100,8 @@ $decrease: #f85f73;
   width: calc(100% / 8);
   box-sizing: border-box;
 
+  font-size: 1.2em;
+
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -114,7 +116,7 @@ $decrease: #f85f73;
 
   width: 80%;
 
-  margin-top: 10%;
+  margin-top: 5%;
 
   position: relative;
 }
@@ -142,7 +144,7 @@ $decrease: #f85f73;
 }
 .teamData {
   width: 100%;
-  height: 50px;
+  height: 70px;
   border-bottom: 1px solid rgba($white,.2);
 
   position: absolute;
@@ -165,7 +167,7 @@ $decrease: #f85f73;
   position: absolute;
   left: 0;
   width: 100%;
-  height: 500px;
+  height: 600px;
 
   transform: scale(1.1);
 

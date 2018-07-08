@@ -3,7 +3,7 @@
     <div class="topWrapper">
       <div class="bitcoin">
         <span class="bitcoinTitle">{{teamMoney}}</span>
-        <img class="bitcoin" src="../assets/bitcoin.png" width="15" height="15">
+        <img class="bitcoin" src="../assets/pinecone.png" width="15" height="15">
       </div>
       <div class="teamInfo">
         <span>{{teamString}}</span>
@@ -13,13 +13,13 @@
           <img src="../assets/atk.png" width="15" height="15">
           <span>{{teamAtk}}</span>
         </div>
-        <div class="defWrapper">
-          <img src="../assets/def.png" width="15" height="15">
-          <span>{{teamDef}}</span>
-        </div>
         <div class="spWrapper">
           <img src="../assets/sp.png" width="15" height="15">
           <span>{{teamSp}}</span>
+        </div>
+        <div class="defWrapper">
+          <img src="../assets/def.png" width="15" height="15">
+          <span>{{teamDef}}</span>
         </div>
       </div>
     </div>
@@ -58,8 +58,9 @@
         <span>加值</span>
         <div @click="submit(1)" :class="submitClassCalc">送出</div>
       </div>
-      <div class="NaBar underBar">
-        <span style="width: 4em; margin-left: 25px;">跳過回合</span>
+      <div class="selfPointBar underBar">
+        <img src="../assets/def.png" width="15" height="15">
+        <span>防禦</span>
         <div @click="submit(2)" :class="submitClassCalc">送出</div>
       </div>
       <div class="announcement underBar">
@@ -119,8 +120,8 @@ export default {
           label: '第八組'
         }],
       value: '',
-      eventTypesCH: ['攻擊','加值','跳過此回合'],
-      eventTypes: ['Atk','Sp','NA'],
+      eventTypesCH: ['攻擊','加值','防禦'],
+      eventTypes: ['Atk','Sp','Def'],
       teamCH: ['第一組','第二組','第三組','第四組','第五組','第六組','第七組','第八組'],
       loading: false
     }
@@ -182,7 +183,7 @@ export default {
       }
     },
     submit(type) {
-      // 0 -> Atk 1 -> Sp 2 -> NA
+      // 0 -> Atk 1 -> Sp 2 -> Def
       // Empty
       this.announcement = ''; 
       // Collect var
@@ -198,6 +199,10 @@ export default {
       }
       if(this.teamSp <= 0 && type === 1) {
         this.announcement = '沒有足夠加值卡';
+        return;
+      }
+      if(this.teamDef <= 0 && type === 2) {
+        this.announcement = '沒有足夠防禦卡';
         return;
       }
 

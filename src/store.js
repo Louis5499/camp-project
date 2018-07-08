@@ -16,9 +16,10 @@ export default new Vuex.Store({
     changes: [],
     isProcess: false,
     isBattling: false,
-    announcement: '',
-    eventTrigger: false,
-    eventType: ''
+    announcement: {
+      message: '',
+      type: ''
+    }
   },
   mutations: {
     renewTeams(state,data) {
@@ -37,13 +38,13 @@ export default new Vuex.Store({
       state.isBattling = data;
     },
     renewAnnounce(state,data) {
-      state.announcement = data.message;
-      state.eventType = data.type;
-      state.eventTrigger = true;
-    },
-    eventFlagDown(state) {
-      state.eventTrigger = false;
+      state.announcement.message = data.message;
+      state.announcement.type = data.type;
     }
+    // },
+    // eventFlagDown(state) {
+    //   state.eventTrigger = false;
+    // }
   },
   actions: {
     updateData ({ commit, state }, data) {

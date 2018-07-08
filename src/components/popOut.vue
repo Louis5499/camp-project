@@ -1,7 +1,20 @@
 <template>
   <div class="darkWrapper">
-    <div class="popOut">
-      <span>{{announcement}}</span>
+    <div v-if="announcement.type == 'Atk-inform'" class="popOut Atk-inform">
+      <img src="../assets/sword.png" width="40" height="40" style="margin-bottom: 20px;">
+      <span>{{announcement.message}}</span>
+    </div>
+    <div v-if="announcement.type == 'Atk-success'" class="popOut Atk-success">
+      <img src="../assets/sword.png" width="40" height="40" style="margin-bottom: 20px;">
+      <span>{{announcement.message}}</span>
+    </div>
+    <div v-if="announcement.type == 'Atk-fail'" class="popOut Atk-fail">
+      <img src="../assets/defence.png" width="40" height="40" style="margin-bottom: 20px;">
+      <span>{{announcement.message}}</span>
+    </div>
+    <div v-if="announcement.type == 'Sp-success'" class="popOut Sp-success">
+      <img src="../assets/pinecone.png" width="40" height="40" style="margin-bottom: 20px;">
+      <span>{{announcement.message}}</span>
     </div>
   </div>
 </template>
@@ -13,6 +26,7 @@ export default {
     ...mapGetters({
       announcement: 'getAnnouncement'
     }),
+    
   }
 }
 </script>
@@ -56,24 +70,55 @@ $background: #1c1c1c;
 }
 .popOut {
   width: 70%;
-  height: 100px;
-  background: #df8931;
+  height: 200px;
+  
 
   position: relative;
   top: -10%;
 
-  font-size: 1.5em;
+  font-size: 2em;
   font-weight: 500;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
 
   color: #eae3e3;
 
   box-shadow: 5px 5px $background;
+  box-sizing: border-box;
 
   animation: popOut ease .3s;
+}
+.popOut span {
+  display: block;
+}
+.Atk-inform {
+  background: #f76262;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  padding-top: 40px;
+}
+.Atk-success {
+  background: #fe5f55;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  padding-top: 40px;
+}
+.Atk-fail {
+  background: #4e709d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  padding-top: 40px;
+}
+.Sp-success {
+  background: #aa530e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  padding-top: 40px;
 }
 </style>
