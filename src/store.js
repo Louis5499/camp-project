@@ -38,8 +38,8 @@ export default new Vuex.Store({
       state.isBattling = data;
     },
     renewAnnounce(state,data) {
-      state.announcement.message = data.message;
-      state.announcement.type = data.type;
+      state.announcement = data;
+      console.log(data);
     }
     // },
     // eventFlagDown(state) {

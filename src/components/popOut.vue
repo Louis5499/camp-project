@@ -16,6 +16,10 @@
       <img src="../assets/pinecone.png" width="40" height="40" style="margin-bottom: 20px;">
       <span>{{announcement.message}}</span>
     </div>
+    <div v-if="announcement.type == 'Natural-event'" class="popOut Natural-event">
+      <img src="../assets/pinecone.png" width="40" height="40" style="margin-bottom: 20px;">
+      <span>{{announcement.message}}</span>
+    </div>
   </div>
 </template>
 

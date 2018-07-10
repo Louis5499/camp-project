@@ -29,6 +29,7 @@ export default {
   },
   watch: {
     getAnnouncement() {
+      console.log("in");
       this.isPopOut = true;
       setTimeout(()=>{
         this.isPopOut = false;
