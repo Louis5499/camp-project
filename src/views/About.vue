@@ -12,6 +12,7 @@ import ScoreBoard from '@/components/ScoreBoard.vue';
 import popOut from '@/components/popOut';
 import { mapGetters } from 'vuex'
 import { setTimeout } from 'timers';
+import { debug } from 'util';
 
 export default {
   data() {

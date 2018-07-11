@@ -17,8 +17,7 @@
       <span>{{announcement.message}}</span>
     </div>
     <div v-if="announcement.type == 'Natural-event'" class="popOut Natural-event">
-      <img src="../assets/pinecone.png" width="40" height="40" style="margin-bottom: 20px;">
-      <span>{{announcement.message}}</span>
+      <span>天然災害</span>
     </div>
   </div>
 </template>
@@ -74,7 +73,7 @@ $background: #1c1c1c;
 }
 .popOut {
   width: 70%;
-  height: 200px;
+  height: 300px;
   
 
   position: relative;
@@ -94,7 +93,11 @@ $background: #1c1c1c;
   display: block;
 }
 .Atk-inform {
-  background: #f76262;
+  // background: #f76262;
+  background: url("../assets/atk-inform-bg.png");
+  background-size: cover;
+  background-position: center center;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -102,7 +105,11 @@ $background: #1c1c1c;
   padding-top: 40px;
 }
 .Atk-success {
-  background: #fe5f55;
+  // background: #fe5f55;
+
+  background: url("../assets/atk-success-bg.png");
+  background-size: cover;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -110,7 +117,11 @@ $background: #1c1c1c;
   padding-top: 40px;
 }
 .Atk-fail {
-  background: #4e709d;
+  // background: #4e709d;
+
+  background: url("../assets/atk-fail-bg.png");
+  background-size: cover;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -118,11 +129,36 @@ $background: #1c1c1c;
   padding-top: 40px;
 }
 .Sp-success {
-  background: #aa530e;
+  // background: #aa530e;
+
+  background: url("../assets/sp-success-bg.png");
+  background-size: cover;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   
   padding-top: 40px;
+}
+
+.Natural-event {
+  // background: #aa530e;
+
+  background: url("../assets/natural-event-bg.png");
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  
+  padding-top: 40px;
+  & span {
+    display: block;
+    font-size: 3em;
+    width: 2.5em;
+    margin-right: 65px;
+    color: white;
+  }
 }
 </style>
