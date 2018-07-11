@@ -79,7 +79,7 @@ $background: #1c1c1c;
   position: relative;
   top: -10%;
 
-  font-size: 2em;
+  font-size: 3em;
   font-weight: 500;
 
   color: #eae3e3;
@@ -101,8 +101,7 @@ $background: #1c1c1c;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-  padding-top: 40px;
+  justify-content: center;
 }
 .Atk-success {
   // background: #fe5f55;
@@ -113,8 +112,7 @@ $background: #1c1c1c;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-  padding-top: 40px;
+  justify-content: center;
 }
 .Atk-fail {
   // background: #4e709d;
@@ -125,8 +123,7 @@ $background: #1c1c1c;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-  padding-top: 40px;
+  justify-content: center;
 }
 .Sp-success {
   // background: #aa530e;
@@ -137,8 +134,7 @@ $background: #1c1c1c;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-  padding-top: 40px;
+  justify-content: center;
 }
 
 .Natural-event {
