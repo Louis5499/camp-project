@@ -146,6 +146,7 @@ export default {
       let datum = this.changes[teamNum-1];
       console.log(datum);
       for(let i=0;i<this.eventTypes.length;i++) if(this.eventTypes[i] === datum.kindofCard) return this.eventTypesCH[i];
+      return '執行完畢'
     },
     targetTranslate() {
       let teamNum = this.loginTeam;

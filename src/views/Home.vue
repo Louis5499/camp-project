@@ -81,19 +81,19 @@ export default {
           break;
         case 'team5':
           teamNum = 5;
-          if(this.passWd == 'IamTeam5') correct = true;
+          if(this.passWd == 'rtyfgh') correct = true;
           break;
         case 'team6':
           teamNum = 6;
-          if(this.passWd == 'IamTeam6') correct = true;
+          if(this.passWd == 'dfghjk') correct = true;
           break;
         case 'team7':
           teamNum = 7;
-          if(this.passWd == 'IamTeam7') correct = true;
+          if(this.passWd == 'uiozxc') correct = true;
           break;
         case 'team8':
           teamNum = 8;
-          if(this.passWd == 'IamTeam8') correct = true;
+          if(this.passWd == 'qwecvb') correct = true;
           break;
       }
       if(correct) {
